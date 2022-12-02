@@ -1,4 +1,5 @@
 const prodmodel = require('../models/productmodel');
+const jwt = require("jsonwebtoken");
 
 
 const addProd = async(request,response)=>{
@@ -9,6 +10,42 @@ const addProd = async(request,response)=>{
     } catch (error) {
         response.status(400).send(error.message);
     }
+}
+
+const userallProducts = async(request,response)=>{
+    try {
+        // const userr = request.headers.authorization;
+        const product = await prodmodel.find(request.params);
+        response.send(product);
+    } catch (error) {
+        response.send(error.message);
+    }
+    // try {
+             
+    //         var authorization = request.headers.authorization.split(' ')[1];
+    //             const decoded = jwt.decode(authorization, "Token");
+    //             console.log(decoded);
+    //             const userId = decoded.id  
+    //             console.log(userId);
+           
+                
+    //     const userid = request.userId;
+    //      console.log(userid);
+    //         // Fetch the user by id 
+    //       const product =  await prodmodel.findOne({userid})
+    //         if(product){
+    //             response.send(product);
+    //         }
+    //         else{
+    //             response.send("usernot found")
+    //         }
+            
+        
+    // }
+    //  catch (error) {
+    //     response.send(error.message);
+    // }
+    
 }
 
 const allProducts = async(request,response)=>{
@@ -56,6 +93,7 @@ module.exports={
     allProducts,
     prodby,
     produpdate,
-    proddelete
+    proddelete,
+    userallProducts
 
 }

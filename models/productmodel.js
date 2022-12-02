@@ -15,7 +15,12 @@ const prodSchema = new mongoose.Schema({
     category:{
         type:String,
         required:true
-    }
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "user"
+       }
 });
 
 const product = mongoose.model('product', prodSchema);
